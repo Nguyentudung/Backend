@@ -8,6 +8,7 @@ import AdmZip from "adm-zip";
 import fetch from "node-fetch";
 import { fileURLToPath } from "url";
 import dotenv from "dotenv";
+import cors from "cors";
 
 // ------------------------------------------------------------------
 // Định nghĩa __dirname và __filename cho ES Modules (ESM)
@@ -21,6 +22,13 @@ console.log(`💡 Đang cố gắng load file ENV tại: ${envPath}`);
 dotenv.config({ path: envPath });
 
 const app = express();
+
+app.use(
+    cors({
+        origin: ["http://localhost:5173", "https://alphawaveprep.netlify.app"],
+    })
+);
+
 app.use(express.json());
 
 // Multer
